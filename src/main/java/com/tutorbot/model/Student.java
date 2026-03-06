@@ -1,4 +1,5 @@
 package com.tutorbot.model;
+
  // Student model class (POJO)
 public class Student {
 
