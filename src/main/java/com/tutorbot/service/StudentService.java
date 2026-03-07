@@ -8,36 +8,24 @@ import java.util.List;
 
 /**
  * StudentService - Business logic for students
- * TODO: Inject StudentRepository using @Autowired
- * TODO: Implement getAllStudents() - returns all students
- * TODO: Implement getStudentById(int id) - returns one student or null
- * TODO: Implement registerStudent(Student s) - adds to list, auto-assigns id
  */
 @Service
 public class StudentService {
+    @Autowired
+    private StudentRepository studentRepository;
 
-    // TODO: Declare StudentRepository and inject it using @Autowired
-    // @Autowired
-    // private StudentRepository studentRepository;
-
-    // TODO: Implement getAllStudents() method
     // Returns list of all students from repository
     public List<Student> getAllStudents() {
-        // TODO: Call studentRepository.findAll() and return result
-        return null;
+        return studentRepository.findAll();
     }
 
-    // TODO: Implement getStudentById(int id) method
     // Returns single student by id, or null if not found
     public Student getStudentById(int id) {
-        // TODO: Call studentRepository.findById(id) and return result
-        return null;
+        return studentRepository.findById(id);
     }
 
-    // TODO: Implement registerStudent(Student student) method
     // Adds new student to repository with auto-assigned id
     public Student registerStudent(Student student) {
-        // TODO: Call studentRepository.save(student) and return result
-        return null;
+        return studentRepository.save(student);
     }
 }
