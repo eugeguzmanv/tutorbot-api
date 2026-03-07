@@ -9,6 +9,9 @@ public class Student {
     private String email;
     private String level;
 
+    // no-arg constructor required for JSON deserialization
+    public Student() {}
+
     //constructor
     public Student(int id, String name, String email, String level){ 
         this.id = id; 

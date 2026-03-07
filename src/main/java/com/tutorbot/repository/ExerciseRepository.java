@@ -7,10 +7,7 @@ import java.util.List;
 
 /**
  * ExerciseRepository - Fake data layer using ArrayList
- * TODO: Inject fake exercise data in constructor
- * TODO: Implement findAll() - return all exercises
- * TODO: Implement findById(int id) - return exercise by id or null
- * TODO: Implement findByDifficulty(String difficulty) - filter by difficulty
+ 
  */
 @Repository
 public class ExerciseRepository {
@@ -46,7 +43,7 @@ public class ExerciseRepository {
     public List<Exercise> findByDifficulty(String difficulty) {
         List<Exercise> result= new ArrayList<>();
         for(Exercise exercise: exercises){
-            if(exercise.getDifficulty() == difficulty){
+            if(exercise.getDifficulty().equalsIgnoreCase(difficulty)){
                result.add(exercise);
             }
         }

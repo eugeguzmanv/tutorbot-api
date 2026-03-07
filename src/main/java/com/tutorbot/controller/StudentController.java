@@ -11,44 +11,35 @@ import java.util.List;
 /**
  * StudentController - REST API endpoints for students
  * Base path: /api/students
- * TODO: Inject StudentService using @Autowired
- * TODO: Implement GET /api/students - List all students
- * TODO: Implement GET /api/students/{id} - Get student by id
- * TODO: Implement POST /api/students - Register new student
  */
 @RestController
 @RequestMapping("/api/students")
 public class StudentController {
 
-    // TODO: Declare StudentService and inject it using @Autowired
-    // @Autowired
-    // private StudentService studentService;
-
-    // TODO: Create GET /api/students endpoint
+    @Autowired
+    private StudentService studentService;
     // Method: getAllStudents()
     // Returns: ResponseEntity with list of all students and HTTP 200 OK
+    @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
-        // TODO: Call studentService.getAllStudents() and return ResponseEntity
-        return null;
+        return ResponseEntity.ok(studentService.getAllStudents());
     }
-
-    // TODO: Create GET /api/students/{id} endpoint
     // Method: getStudentById(int id)
     // Returns: ResponseEntity with student if found (HTTP 200), or 404 if not found
+    @GetMapping("/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable int id) {
-        // TODO: Call studentService.getStudentById(id)
-        // TODO: Return 200 OK with student if not null
-        // TODO: Return 404 NOT FOUND if student is null
-        return null;
+        Student student = studentService.getStudentById(id);
+        if (student == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(student);
     }
-
-    // TODO: Create POST /api/students endpoint
     // Method: registerStudent(Student student)
     // Request body: Student object (JSON)
     // Returns: ResponseEntity with newly registered student and HTTP 201 CREATED
+    @PostMapping
     public ResponseEntity<Student> registerStudent(@RequestBody Student student) {
-        // TODO: Call studentService.registerStudent(student)
-        // TODO: Return ResponseEntity with HTTP 201 CREATED status
-        return null;
+        Student createdStudent = studentService.registerStudent(student);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdStudent);
     }
 }

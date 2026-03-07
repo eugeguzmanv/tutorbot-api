@@ -33,7 +33,7 @@ public class ExerciseService {
             String correctAnswer = exerciseRepository.getCorrectAnswer(exerciseId);
 
             // Compare answer provided with correct answer
-            if (answer == correctAnswer) {
+            if (correctAnswer != null && correctAnswer.equals(answer)) {
                 return new Feedback(studentId, exerciseId, answer, 100, "Excellent! Your answer is correct.", true);
             }
             else {
