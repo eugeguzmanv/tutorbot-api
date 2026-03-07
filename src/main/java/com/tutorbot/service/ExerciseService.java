@@ -9,44 +9,38 @@ import java.util.List;
 
 /**
  * ExerciseService - Business logic for exercises and feedback
- * TODO: Inject ExerciseRepository using @Autowired
- * TODO: Implement getAllExercises() - returns all exercises
- * TODO: Implement getExercisesByDifficulty(String difficulty) - filters by difficulty
- * TODO: Implement submitAnswer(int studentId, int exerciseId, String answer) - returns Feedback
  */
 @Service
 public class ExerciseService {
+    @Autowired
+    private ExerciseRepository exerciseRepository;
 
-    // TODO: Declare ExerciseRepository and inject it using @Autowired
-    // @Autowired
-    // private ExerciseRepository exerciseRepository;
-
-    // TODO: Implement getAllExercises() method
     // Returns list of all exercises from repository
     public List<Exercise> getAllExercises() {
-        // TODO: Call exerciseRepository.findAll() and return result
-        return null;
+        return exerciseRepository.findAll();
     }
 
-    // TODO: Implement getExercisesByDifficulty(String difficulty) method
     // Returns filtered list of exercises by difficulty level
     public List<Exercise> getExercisesByDifficulty(String difficulty) {
-        // TODO: Call exerciseRepository.findByDifficulty(difficulty) and return result
-        return null;
+        return exerciseRepository.findByDifficulty(difficulty);
     }
 
-    // TODO: Implement submitAnswer(int studentId, int exerciseId, String answer) method
     // Returns Feedback object with score and message
-    // Logic:
-    //   - Get correct answer from exerciseRepository
-    //   - Compare with submitted answer
-    //   - If match: score = 100, message = "Excellent! That is correct.", correct = true
-    //   - If no match: score = 40, message = "Try again!", correct = false
     public Feedback submitAnswer(int studentId, int exerciseId, String answer) {
-        // TODO: Get exercise to verify it exists
-        // TODO: Get correct answer from repository
-        // TODO: Compare answer with correct answer
-        // TODO: Create and return Feedback object with appropriate score and message
-        return null;
+        // Get exercise to verify it exists
+        if (exerciseRepository.findById(exerciseId) != null) {
+            // Get correct answer from repository
+            String correctAnswer = exerciseRepository.getCorrectAnswer(exerciseId);
+
+            // Compare answer provided with correct answer
+            if (answer == correctAnswer) {
+                return new Feedback(studentId, exerciseId, answer, 100, "Excellent! Your answer is correct.", true);
+            }
+            else {
+                return new Feedback(studentId, exerciseId, answer, 40, "Try again! Your answer is incorrect.", false);
+            }
+        }
+
+        return new Feedback(studentId, exerciseId, answer, 0, "Exercise not found.", false);
     }
 }
