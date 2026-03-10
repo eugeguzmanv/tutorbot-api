@@ -87,9 +87,9 @@ tutorbot-api/
 - **Body (JSON):**
   ```json
   {
-    "name": "John Doe",
-    "email": "john@university.com",
-    "level": "intermediate"
+    "name": "Eugenio Guzman",
+    "email": "eugenio@university.com",
+    "level": "master"
   }
   ```
 - **Expected Response:** Newly created student with auto-assigned ID
@@ -129,18 +129,3 @@ The application comes pre-loaded with:
 - Student IDs are auto-assigned when registering
 - Exercise answers are hardcoded for verification
 - Scores: 100 for correct answers, 40 for incorrect
-
-## TODO Checklist
-
-- [ ] Implement all model classes with getters/setters/constructors
-- [ ] Pre-load fake data in repositories
-- [ ] Implement repository methods
-- [ ] Implement service methods with business logic
-- [ ] Implement REST controller methods
-- [ ] Test all 7 endpoints with Postman
-- [ ] Verify server runs on port 8080
-- [ ] Check JSON responses are properly formatted
-
-## Author
-
-Created as part of TutorBot API project
